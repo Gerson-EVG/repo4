@@ -1,0 +1,153 @@
+! 30/09/2025.  Force field basado en el trabajo de Shao 2024 (estructura general) + He 2019 (terminacion de puntas)
+
+ATOMS
+MASS  -1  CR1   51.99600 ! 
+MASS  -1  CR2   51.99600 ! 
+MASS  -1  F     18.99000 ! 
+MASS  -1  O1    15.99940 ! 
+MASS  -1  O2    15.99940 ! 
+MASS  -1  O3    15.99940 ! 
+MASS  -1  C1    12.01100 !
+MASS  -1  C2    12.01100 !
+MASS  -1  C3    12.01100 ! 
+MASS  -1  C4    12.01100 ! 
+MASS  -1  H1    1.00800 !
+MASS  -1  H2    1.00800 !
+! OK
+
+BONDS
+!V(bond) = Kb(b - b0)**2
+!Kb: kcal/mole/A**2
+!b0: A
+!
+!atom types  Kb  b0
+!
+CR2  F     222.747130     1.853771 !Shao
+CR1  O1    285.091468     1.875606 !Shao CR1-O1
+CR1  O2    266.461876     1.918336 !Shao CR1-O2
+O2   C1    646.680887     1.311940 !Shao O1-C1
+C3   C3    462.655054     1.379256 !Shao C2-C2
+C3   H1    357.440381     1.081418 !Shao C2-H1
+C2   C1    391.669513     1.458000 !Shao C2-C1
+CR2  O3    266.461876     1.918336 !igual a CR1-O2
+CR2  O1    285.091468     1.875606 !igual a CR1-O1
+O3   C1    646.680887     1.311940 !igual a O2-C1
+C3   C2    462.655054     1.379256 !igual a C3-C3
+C1   C4    268.000000     1.529000 !Jorgenson CT-CT
+C4   H2    340.000000     1.090000 !Jorgenson HC-CT
+
+
+! OK
+
+ANGLES
+!V(angle) = Ktheta(Theta - Theta0)**2
+!V(Urey-Bradley) = Kub(S - S0)**2
+!Ktheta: kcal/mole/rad**2
+!Theta0: degrees
+!Kub: kcal/mole/A**2 (Urey-Bradley)
+!S0: A
+!
+! atom types     Ktheta  Theta0   Kub    S0
+!
+F   CR2  O3    68.488174 90.7997  0 0 !Gerard
+F   CR2  O1    70.933580 180.0 0 0 !Gerard modificado por GVG
+O3  CR2  O3    86.372976 180.0  0 0 !Gerard modificado por GVG
+O1  CR2  O3    89.284396 90.8  0 0 !Gerard
+C1  O2   CR1   83.458859  120.2477 0 0 !Gerard
+CR1 O1   CR1   58.301671 120.2477 0 0 !Gerard
+C2  C3   H1    45.47819264 120.2477 0 0 !Gerard
+C1  C2   C3    81.116947 120.2477 0 0 !Gerard
+O2  C1   O3    148.5558316 120.2476 0 0 !Gerard
+C2  C1   O2    104.5927059 120.2477 0 0 !Gerard
+C2  C3   C3    88.352676 120.2477 0 0 !Gerard
+O1  CR1  O2    89.284396 90.8  0 0 !Gerard (duplicado)
+O2  CR1  O2    86.372976 180.0  0 0 !Gerard (duplicado) modificado por GVG
+C1  O3   CR2   83.458859  120.2477 0 0 !Gerard (duplicado)
+CR1 O1   CR2   58.301671 120.2477 0 0 !Gerard (duplicado)
+C3  C3   H1    45.47819264 120.2477 0 0 !Gerard (duplicado)
+C3  C2   C3    88.352676 120.2477 0 0 !Gerard (duplicado)
+C2  C1   O3    104.5927059 120.2477 0 0 !Gerard (duplicado)
+O2  C1   O2    148.5558316 120.2476 0 0 !Gerard (duplicado)
+C4  C1   O2    100 120 0 0 !Punta, aprox por vmd
+C4  C1   O3    100 120 0 0 !Punta, aprox por vmd
+C1  C4   H2    100 110 0 0 !Punta, aprox por vmd
+H2  C4   H2    100 108 0 0 !Punta, aprox por vmd
+! OK
+
+DIHEDRALS
+! ******** V(dihedral) = Kchi(1 + cos(n(chi) - delta))
+F   CR2   O3   C1       0.0     2     -150.0 !
+O3  CR2   O3   C1       0.0     2     -150.0 !
+O1  CR2   O3   C1       0.0     2     -150.0 !
+F   CR2   O1   CR1      0.0     2     180.0  !
+O3  CR2   O1   CR1      0.0     2     46.0   ! 
+O2  CR1   O1   CR2      0.0     2     46.0   ! 
+O2  CR1   O1   CR1      0.0     2     46.0   !
+O1  CR1   O2   C1      0.0     2     -45.0   ! 
+O2  CR1   O2   C1      0.0     2     -45.0   ! 
+CR2 O3    C1   O2      6.7371037     2     180      ! **existe en Shao
+CR1 O2    C1   O3      6.7371037     2     180      ! **existe en Shao
+CR1 O2    C1   O2      6.7371037     2     180.0    ! **existe en Shao
+C3  C3    C2   C1      0.0     2     180.0   !  
+C3  C3    C2   C3      0.0     2     180.0   !
+H1  C3    C2   C1      0.0     2     180.0   !
+H1  C3    C2   C3      0.0     2     180.0   ! 
+C2  C3    C3   C2      0.0     2     180.0   !
+C2  C3    C3   H1      0.0     2     180.0   !
+H1  C3    C3   H1      3.368556792     2     180.0   ! +existe en Shao
+C3  C2    C1   O2      1.25     2     180.0   ! *existe en Shao
+O3  C1    C2   C3      1.25     2     180.0   ! *existe en Shao
+CR1 O2    C1   C4      1.25     2     180.0   !añadido a mano para estructura de las puntas
+CR2 O3    C1   C4      1.25     2     180.0   !añadido a mano para estructura de las puntas
+O2  C1    C4   H2      0.0       2     180.0 ! 
+O3  C1    C4   H2      0.0      2     180.0  ! 
+CR2 O3    C1   C2      0.0     2     180.0   ! 
+CR1 O2    C1   C2      0.0     2     180.0   ! 
+
+
+! OK
+
+IMPROPER
+!
+!V(improper) = Kchi(1 + cos(n(chi) - delta))
+!V(improper) = Kpsi(psi - psi0)**2
+!
+!Kpsi: kcal/mole/rad**2
+!psi0: degrees
+!
+O1   CR1   CR2   CR1    0.0      2     180.0
+O1   CR2   CR1   CR1    0.0      2     180.0
+O1   CR1   CR1   CR2    0.0      2     180.0
+O3   O2    C2    C1     0.0      2     180.0
+O2   O2    C2    C1     0.0      2     180.0
+O2   O3    C2    C1     0.0      2     180.0
+H1   C2    C3    C3     0.0      2     180.0
+H1   C3    C2    C3     2.0      1     180.0 !existe en Shao.
+! OK
+
+NONBONDED  NBXMOD 5  ATOM CDIEL FSHIFT VATOM VDISTANCE VFSWITCH -
+     CUTNB 14.0  CTOFNB 12.0  CTONNB 10.0  EPS 1.0  E14FAC 1.0  WMIN 1.5
+!********* V(Lennard-Jones) = Eps,i,j[(Rmin,i,j/ri,j)**12 - 2(Rmin,i,j/ri,j)**6]
+!
+!epsilon: kcal/mole, Eps,i,j = sqrt(eps,i * eps,j)
+!Rmin/2: A, Rmin,i,j = Rmin/2,i + Rmin/2,j
+!
+!atom  ignored    epsilon      Rmin/2   ignored   eps,1-4       Rmin/2,1-4
+!
+CR1    0.0        -0.0150   1.50971145                 !Shao et al. 
+CR2    0.0        -0.0150   1.50971145                 !Shao et al.
+C1     0.0        -0.1051   1.92502241                 !Shao et al.
+C2     0.0        -0.1051   1.92502241                 !Shao et al.
+C3     0.0        -0.1051   1.92502241                 !Shao et al.
+C4     0.0        -0.1051   1.92502241                 !Shao et al.
+O1     0.0        -0.0957   1.70053000                 !Shao et al.
+O2     0.0        -0.0957   1.70053000                 !Shao et al.
+O3     0.0        -0.0957   1.70053000                 !Shao et al
+H1     0.0        -0.0440   1.44236370                 !Shao et al.
+H2     0.0        -0.0440   1.44236370                 !Shao et al.
+F      0.0        -0.0725   1.73420386                 !Shao et al.
+! OK
+
+END
+
+
